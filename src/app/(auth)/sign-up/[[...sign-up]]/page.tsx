@@ -1,8 +1,9 @@
 import { SignUp } from "@clerk/nextjs";
+import styles from "./page.module.css";
 
 export default function SignUpPage() {
   return (
-    <main style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
+    <main className={styles.main}>
       <SignUp />
     </main>
   );
