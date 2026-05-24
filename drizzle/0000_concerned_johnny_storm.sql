@@ -1,6 +1,6 @@
 CREATE TYPE "public"."post_type" AS ENUM('image', 'video', 'pdf', 'audio');--> statement-breakpoint
 CREATE TYPE "public"."subscription_status" AS ENUM('active', 'past_due', 'canceled', 'incomplete');--> statement-breakpoint
-CREATE TYPE "public"."user_role" AS ENUM('admin', 'curator', 'subscriber');--> statement-breakpoint
+CREATE TYPE "public"."user_role" AS ENUM('admin', 'member');--> statement-breakpoint
 CREATE TYPE "public"."webhook_status" AS ENUM('received', 'processed', 'failed', 'skipped');--> statement-breakpoint
 CREATE TABLE "board" (
 	"id" uuid PRIMARY KEY NOT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE "curator_profile" (
 	"display_name" text NOT NULL,
 	"bio" text,
 	"avatar_url" text,
-	"monthly_price_cents" integer NOT NULL,
+	"monthly_price_cents" integer,
 	"currency" char(3) DEFAULT 'BRL' NOT NULL,
 	"payout_account_id" text,
 	"plan_id" text,
@@ -78,7 +78,7 @@ CREATE TABLE "user_account" (
 	"id" uuid PRIMARY KEY NOT NULL,
 	"clerk_user_id" text,
 	"email" text NOT NULL,
-	"role" "user_role" DEFAULT 'subscriber' NOT NULL,
+	"role" "user_role" DEFAULT 'member' NOT NULL,
 	"payment_customer_id" text,
 	"created_at" timestamp with time zone DEFAULT now() NOT NULL,
 	"updated_at" timestamp with time zone DEFAULT now() NOT NULL,

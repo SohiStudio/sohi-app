@@ -1,5 +1,5 @@
 {
-  "id": "f122306c-f3c8-43fd-8808-615cdd729d89",
+  "id": "f4428950-24c0-4a2e-9c48-330a61f9a3bb",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -310,7 +310,7 @@
           "name": "monthly_price_cents",
           "type": "integer",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "currency": {
           "name": "currency",
@@ -793,7 +793,7 @@
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": true,
-          "default": "'subscriber'"
+          "default": "'member'"
         },
         "payment_customer_id": {
           "name": "payment_customer_id",
@@ -1001,8 +1001,7 @@
       "schema": "public",
       "values": [
         "admin",
-        "curator",
-        "subscriber"
+        "member"
       ]
     },
     "public.webhook_status": {
