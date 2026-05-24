@@ -18,7 +18,7 @@ import { uuidv7 } from "uuidv7";
 
 // --- Enum types ---
 
-export const userRole = pgEnum("user_role", ["admin", "curator", "subscriber"]);
+export const userRole = pgEnum("user_role", ["admin", "member"]);
 export const postType = pgEnum("post_type", ["image", "video", "pdf", "audio"]);
 export const subscriptionStatus = pgEnum("subscription_status", [
   "active",
@@ -41,7 +41,7 @@ export const userAccount = pgTable("user_account", {
     .$defaultFn(() => uuidv7()),
   clerkUserId: text("clerk_user_id").unique(),
   email: text("email").notNull().unique(),
-  role: userRole("role").notNull().default("subscriber"),
+  role: userRole("role").notNull().default("member"),
   paymentCustomerId: text("payment_customer_id"),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
@@ -57,7 +57,7 @@ export const curatorProfile = pgTable("curator_profile", {
   displayName: text("display_name").notNull(),
   bio: text("bio"),
   avatarUrl: text("avatar_url"),
-  monthlyPriceCents: integer("monthly_price_cents").notNull(),
+  monthlyPriceCents: integer("monthly_price_cents"),
   currency: char("currency", { length: 3 }).notNull().default("BRL"),
   payoutAccountId: text("payout_account_id"),
   planId: text("plan_id"),
